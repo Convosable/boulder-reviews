@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :climbing_sessions
   resources :boulder_problems
   resources :users
   # Routing logic: fallback requests for React Router.

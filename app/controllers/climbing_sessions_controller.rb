@@ -1,0 +1,2 @@
+class ClimbingSessionsController < ApplicationController
+end

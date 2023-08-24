@@ -5,8 +5,8 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :password
       t.string :password_confirmation
       t.string :image_url
-      t.integer :height
-      t.integer :weight
+      t.float :height
+      t.float :weight
       t.string :experience
 
       t.timestamps

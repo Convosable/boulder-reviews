@@ -1,0 +1,2 @@
+class ClimbingSession < ApplicationRecord
+end
