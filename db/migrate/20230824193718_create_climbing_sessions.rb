@@ -6,8 +6,8 @@ class CreateClimbingSessions < ActiveRecord::Migration[6.1]
       t.boolean :completed
       t.integer :boulder_rating
       t.text :notes
-      t.string :user_id
-      t.string :boulder_problem_id
+      t.integer :user_id
+      t.integer :boulder_problem_id
 
       t.timestamps
     end
