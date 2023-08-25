@@ -6,6 +6,7 @@ class User < ApplicationRecord
     has_secure_password
 
     validates :username, presence: true, uniqueness: true
+    # lenght for password digest doesnt work for the length of the actual password, need to figure out
     validates :password_digest, presence: true, length: { minimum: 8}
     validates :name, presence: true
     validates :height, presence: true
