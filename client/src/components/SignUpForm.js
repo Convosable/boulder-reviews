@@ -17,30 +17,34 @@ const SignUpForm = ({ setUser }) => {
 
     function handleSignup(e) {
         e.preventDefault()
-        fetch('/signup', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                username: username,
-                password: password,
-                passwordConfirmation: passwordConfirmation,
-                name: name,
-                imageUrl: imageUrl,
-                height: height,
-                weight: weight,
-                experience: experience
+        // if (password == passwordConfirmation) {
+            fetch('/signup', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                    password_confirmation: passwordConfirmation,
+                    name: name,
+                    imageUrl: imageUrl,
+                    height: height,
+                    weight: weight,
+                    experience: experience
+                })
             })
-        })
-        .then((r) => {
-            if (r.ok) {
-                r.json().then((user) => setUser(user))
-            }
-            else {
-                r.json().then((error) => setError(error.errors))
-            }
-        })
+            .then((r) => {
+                if (r.ok) {
+                    r.json().then((user) => setUser(user))
+                }
+                else {
+                    r.json().then((error) => setError(error.errors))
+                }
+            })
+        // } else {
+        //     console.log("Password must = Password Confirmation.")
+        // }
     }
 
     return (
