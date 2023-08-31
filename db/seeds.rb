@@ -1,15 +1,4 @@
-puts "🌱 Seeding ..."
-
-User.create(
-    username: "johnny_test",
-    password: "CartoonNetwork",
-    password_confirmation: "CartoonNetwork",
-    name: "Johnny Test",
-    image_url: "https://static.wikia.nocookie.net/versus-compendium/images/0/01/Janny_Test.png/revision/latest?cb=20180922185847",
-    height: 4.75,
-    weight: 100,
-    experience: "Advanced"
-)
+puts "🌱 Seeding Boulder Problems..."
 
 BoulderProblem.create([
   {
@@ -37,15 +26,5 @@ BoulderProblem.create([
     rating: 3
   }
 ])
-
-ClimbingSession.create(
-    date: Date.new(),
-    private: FALSE,
-    completed: TRUE,
-    boulder_rating: 4,
-    notes: "Flashed it.",
-    user_id: 1,
-    boulder_problem_id: 1
-)
 
 puts "✅ Done seeding!"

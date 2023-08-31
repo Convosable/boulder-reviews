@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import BoulderProblemCard from './BoulderProblemCard';
 
 const BoulderProblems = () => {
 
@@ -19,10 +20,17 @@ const BoulderProblems = () => {
         })
       }, []);
 
+      const allBoulderProblems = boulderProblems?.map((problem) => {
+        return <BoulderProblemCard key = {problem.id} problem = {problem}/>
+      })
+
       if (isLoading) return <h1>Loading...</h1>
 
   return (
-    <div>BoulderProblems</div>
+    <div>
+        <h1>Boulder Problems</h1>
+        {allBoulderProblems}
+    </div>
   )
 }
 
