@@ -2,10 +2,10 @@ import React from 'react'
 import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
 
-const Login = () => {
+const Login = ({ setUser }) => {
   return (
     <div>
-        <LoginForm />
+        <LoginForm setUser = {setUser} />
         <SignUpForm />
     </div>
   )
