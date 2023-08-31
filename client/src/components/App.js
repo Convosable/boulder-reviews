@@ -3,6 +3,7 @@ import NavBar from "./NavBar";
 import Login from "./Login";
 import { Routes, Route } from 'react-router-dom';
 import Homepage from "./Homepage";
+import BoulderProblems from "./BoulderProblems";
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
       <NavBar user = {user} setUser = {setUser}/>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        {/* <Route path="/boulderproblems" element={<BoulderProblems />} /> */}
+        <Route path="/boulder_problems" element={<BoulderProblems />} />
       </Routes>
     </div>
   );
