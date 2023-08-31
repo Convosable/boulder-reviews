@@ -6,7 +6,7 @@ const Login = ({ setUser }) => {
   return (
     <div>
         <LoginForm setUser = {setUser} />
-        <SignUpForm />
+        <SignUpForm setUser = {setUser}/>
     </div>
   )
 }
