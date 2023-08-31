@@ -23,7 +23,7 @@ function App() {
   return (    
     <div className="App">
       <h1>Welcome, {user.name}!</h1>
-      <NavBar />
+      <NavBar setUser = {setUser}/>
       <Routes>
       </Routes>
     </div>
