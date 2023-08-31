@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import Login from "./Login";
 import { Routes, Route } from 'react-router-dom';
+import Homepage from "./Homepage";
 
 
 function App() {
@@ -18,13 +19,14 @@ function App() {
   }, []);
 
   if (!user) return <Login setUser = {setUser}/>;
-  console.log(user)
 
   return (    
     <div className="App">
       <h1>Welcome, {user.name}!</h1>
-      <NavBar setUser = {setUser}/>
+      <NavBar user = {user} setUser = {setUser}/>
       <Routes>
+        <Route path="/" element={<Homepage />} />
+        {/* <Route path="/boulderproblems" element={<BoulderProblems />} /> */}
       </Routes>
     </div>
   );
