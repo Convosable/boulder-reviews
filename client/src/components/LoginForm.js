@@ -4,6 +4,7 @@ const LoginForm = ({ setUser }) => {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError] = useState("")
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -18,8 +19,7 @@ const LoginForm = ({ setUser }) => {
             if (r.ok) {
                 r.json().then((user) => setUser(user));
             } else {
-                r.json().then((error) => console.log(error.errors))
-                //need to show error message on DOM
+                r.json().then((error) => setError(error.errors))
             }
         })  
     }
@@ -44,6 +44,7 @@ const LoginForm = ({ setUser }) => {
             /> <br></br>
             <input type="submit" value="Log In"/>
         </form>
+        <h3>{error}</h3>
     </div>
   )
 }
