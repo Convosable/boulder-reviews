@@ -2,6 +2,22 @@
   text-align: center;
 }
 
-.navbar-right {
-  padding-left: 3px;
+.boulder-problem-card {
+  display: inline-block; /* Use flexbox for easy alignment */
+  align-items: center; /* Center items vertically */
+  gap: 15px; /* Gap between image and name */
+  padding: 15px;
+  padding-left: 150px; 
+  padding-right: 150px;/* Add some padding for spacing */
+  background-color: #f0f0f0; /* Background color for the container */
+  border: 1px solid #ccc; /* Add a border for visual separation */
+  border-radius: 8px; /* Add rounded corners */
+}
+
+.boulder-problem-card img {
+  height: 300px;
+}
+
+.boulder-info-short{
+  cursor: pointer;
 }

@@ -1,37 +1,32 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState} from 'react'
 import BoulderProblemCard from './BoulderProblemCard';
+import { Link } from 'react-router-dom'
 
-const BoulderProblems = () => {
+const BoulderProblems = ({ boulderProblems }) => {
+    
+    const [search, setSearch] = useState("")
 
-    const [isLoading, setIsLoading] = useState(true);
-    const [boulderProblems, setBoulderProblems] = useState(null)
+    const filterBySearch = boulderProblems?.filter(problem => {
+        return problem.name.toLowerCase().includes(search.toLowerCase())
+    })
+    //add filter by grade as dropdown
+    //add filter by rating as dropdown
 
+    // add a new boulder problem form
+    
+    return (
 
-    useEffect(() => {
-        fetch("/boulder_problems")
-        .then((r) => {
-          if (r.ok) {
-            r.json()
-            .then((boulder_problems) => {
-                setBoulderProblems(boulder_problems)
-                setIsLoading(false)
-            });
-          }
-        })
-      }, []);
-
-      const allBoulderProblems = boulderProblems?.map((problem) => {
-        return <BoulderProblemCard key = {problem.id} problem = {problem}/>
-      })
-
-      if (isLoading) return <h1>Loading...</h1>
-
-  return (
-    <div>
-        <h1>Boulder Problems</h1>
-        {allBoulderProblems}
-    </div>
-  )
+        <div>
+            <h3>Search for Boudler Problem:</h3>
+            <input type='text' value = {search} onChange={ (e) => setSearch(e.target.value)} />
+            <div className='boulder-problem-container'>
+                <h1>Boulder Problems</h1>
+                {filterBySearch?.map((problem) => (
+                    <BoulderProblemCard problem = {problem}/>
+                ))}
+            </div>
+        </div>    
+    )
 }
 
 export default BoulderProblems;

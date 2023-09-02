@@ -6,6 +6,7 @@ class ClimbingSessionsController < ApplicationController
     end
 
     def create
+        # put find Boulder in here and create via the boulder??
         climbing_session = ClimbingSession.create!(climbing_session_params)
         render json: climbing_session, status: :created
     end

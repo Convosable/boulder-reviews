@@ -12,12 +12,8 @@ const SignUpForm = ({ setUser }) => {
     const [experience, setExperience] = useState("")
     const [error, setError] = useState("")
 
-    // need to set up a password must match password confirmatino check...
-    // maybe when making the fetch request to signup, if statement (password == passwordConfirmation), else throw error
-
     function handleSignup(e) {
         e.preventDefault()
-        // if (password == passwordConfirmation) {
             fetch('/signup', {
                 method: 'POST',
                 headers: {
@@ -28,7 +24,7 @@ const SignUpForm = ({ setUser }) => {
                     password: password,
                     password_confirmation: passwordConfirmation,
                     name: name,
-                    imageUrl: imageUrl,
+                    image_url: imageUrl,
                     height: height,
                     weight: weight,
                     experience: experience
@@ -42,9 +38,6 @@ const SignUpForm = ({ setUser }) => {
                     r.json().then((error) => setError(error.errors))
                 }
             })
-        // } else {
-        //     console.log("Password must = Password Confirmation.")
-        // }
     }
 
     return (
@@ -61,7 +54,7 @@ const SignUpForm = ({ setUser }) => {
 
                 <label>Password:</label>
                 <input 
-                    type = "text"
+                    type = "password"
                     name = "password"
                     value = {password}
                     onChange = {(e) => setPassword(e.target.value)} 
@@ -69,7 +62,7 @@ const SignUpForm = ({ setUser }) => {
 
                 <label>Password Confirmation:</label>
                 <input 
-                    type = "text"
+                    type = "password"
                     name = "passwordConfirmation"
                     value = {passwordConfirmation}
                     onChange = {(e) => setPasswordConfirmation(e.target.value)} 
