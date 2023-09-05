@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import ClimbingSessionCard from './ClimbingSessionCard'
 
 const ClimbingSessions = () => {
 
@@ -9,7 +10,10 @@ const ClimbingSessions = () => {
         fetch('/climbing_sessions')
         .then((r) => {
             if(r.ok) {
-                r.json().then(sesh => setClimbingSessions(sesh));
+                r.json().then(sesh => {
+                    setClimbingSessions(sesh)
+                    console.log(sesh)
+                });
             } else {
                 r.json().then(error => setError(error.errors));
             } 
@@ -17,7 +21,7 @@ const ClimbingSessions = () => {
     }, [])
 
     const allSessions = climbingSessions?.map(session => {
-        return session.notes
+        return <ClimbingSessionCard key = {session.id} session = {session}/>
     })
 
     if(!climbingSessions) return <h1>Loading...</h1>
