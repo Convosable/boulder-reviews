@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import Homepage from "./Homepage";
 import BoulderProblems from "./BoulderProblems";
 import NewClimbingSession from './NewClimbingSession';
+import ClimbingSessions from './ClimbingSessions';
 
 // need to update the readMe --- create boulders(no database of all boudlers) only the ones the  user creates
 
@@ -47,6 +48,7 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/boulder_problems" element={<BoulderProblems boulderProblems = {boulderProblems}/>} />
         <Route path="/climbing_sessions/new" element={<NewClimbingSession userId = {user.id} boulderProblems = {boulderProblems}/>} />
+        <Route path="/climbing_sessions" element={<ClimbingSessions />} />
       </Routes>
     </div>
   );

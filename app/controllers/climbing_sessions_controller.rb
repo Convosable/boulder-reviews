@@ -1,5 +1,9 @@
 class ClimbingSessionsController < ApplicationController
 
+    def index
+        render json: ClimbingSession.all
+    end
+
     def show
         climbing_session = find_climbing_session
         render json: climbing_session, status: :ok
