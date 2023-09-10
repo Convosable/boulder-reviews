@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 
-    has_many :climbing_sessions
-    has_many :boulder_problems, through: :climbing_sessions
+    has_many :reviews
+    has_many :boulder_problems, through: :reviews
 
     has_secure_password
 

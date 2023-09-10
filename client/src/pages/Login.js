@@ -1,6 +1,6 @@
 import React from 'react'
-import LoginForm from './LoginForm'
-import SignUpForm from './SignUpForm'
+import LoginForm from '../components/LoginForm'
+import SignUpForm from '../components/SignUpForm'
 
 const Login = ({ setUser }) => {
   return (

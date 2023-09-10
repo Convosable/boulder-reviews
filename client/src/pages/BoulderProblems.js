@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
-import BoulderProblemCard from './BoulderProblemCard';
-import { Link } from 'react-router-dom'
-
+import BoulderProblemCard from '../components/BoulderProblemCard';
+import {Link} from 'react-router-dom';
 const BoulderProblems = ({ boulderProblems }) => {
     
     const [search, setSearch] = useState("")
@@ -19,10 +18,12 @@ const BoulderProblems = ({ boulderProblems }) => {
         <div>
             <h3>Search for Boudler Problem:</h3>
             <input type='text' value = {search} onChange={ (e) => setSearch(e.target.value)} />
-            <div className='boulder-problem-container'>
                 <h1>Boulder Problems</h1>
+            <div className='boulder-problem-container'>
                 {filterBySearch?.map((problem) => (
-                    <BoulderProblemCard problem = {problem}/>
+                    <Link to={`/boulder_problems/${problem.id}`} key = {problem.id}>
+                        <BoulderProblemCard problem = {problem}/>
+                    </Link>
                 ))}
             </div>
         </div>    

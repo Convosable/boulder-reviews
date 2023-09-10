@@ -26,9 +26,8 @@ ActiveRecord::Schema.define(version: 2023_08_24_193718) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "climbing_sessions", force: :cascade do |t|
+  create_table "reviews", force: :cascade do |t|
     t.date "date"
-    t.boolean "private"
     t.boolean "completed"
     t.integer "boulder_rating"
     t.text "notes"

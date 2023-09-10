@@ -1,8 +1,7 @@
-class CreateClimbingSessions < ActiveRecord::Migration[6.1]
+class CreateReviews < ActiveRecord::Migration[6.1]
   def change
-    create_table :climbing_sessions do |t|
+    create_table :reviews do |t|
       t.date :date
-      t.boolean :private
       t.boolean :completed
       t.integer :boulder_rating
       t.text :notes

@@ -1,4 +1,4 @@
-class ClimbingSession < ApplicationRecord
+class Review < ApplicationRecord
 
     belongs_to :user
     belongs_to :boulder_problem
@@ -9,6 +9,10 @@ class ClimbingSession < ApplicationRecord
 
     def completed?
         completed == true
+    end
+
+    def username
+        self.user.username
     end
 
 end

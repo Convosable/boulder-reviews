@@ -8,10 +8,9 @@ const BoulderProblemCard = ({problem}) => {
 
     return (
         <div className='boulder-problem-card'>
-            <h1>{name} - V{grade} {starRating}</h1>
             <img src={image_url} alt={name} />
-            <p>{description}</p>
-            <p>📍{location}</p>
+            <h1>{name}</h1>
+            <h2>V{grade} - ⭐ {rating}</h2>
         </div>
     )
 }

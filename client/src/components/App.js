@@ -1,12 +1,11 @@
 import '../App.css';
 import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
-import Login from "./Login";
+import Login from "../pages/Login";
 import { Routes, Route } from 'react-router-dom';
-import Homepage from "./Homepage";
-import BoulderProblems from "./BoulderProblems";
+import BoulderProblems from "../pages/BoulderProblems";
 import NewClimbingSession from './NewClimbingSession';
-import ClimbingSessions from './ClimbingSessions';
+import BoudlerProblemDetails from '../pages/BoudlerProblemDetails';
 
 // need to update the readMe --- create boulders(no database of all boudlers) only the ones the  user creates
 
@@ -44,12 +43,11 @@ function App() {
     <div className="App">
       <h1>Welcome, {user.name}!</h1>
       <NavBar user = {user} setUser = {setUser}/>
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/boulder_problems" element={<BoulderProblems boulderProblems = {boulderProblems}/>} />
-        <Route path="/climbing_sessions/new" element={<NewClimbingSession userId = {user.id} boulderProblems = {boulderProblems}/>} />
-        <Route path="/climbing_sessions" element={<ClimbingSessions />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<BoulderProblems boulderProblems = {boulderProblems}/>} />
+          <Route path="/climbing_sessions/new" element={<NewClimbingSession userId = {user.id} boulderProblems = {boulderProblems}/>} />
+          <Route path="/boulder_problems/:id" element={<BoudlerProblemDetails boulderProblems = {boulderProblems}/>} />
+        </Routes>
     </div>
   );
 }
