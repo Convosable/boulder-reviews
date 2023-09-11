@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 2023_08_24_193718) do
     t.text "description"
     t.string "image_url"
     t.string "location"
-    t.integer "rating"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -2,7 +2,7 @@ import React from 'react'
 
 const BoulderProblemCard = ({problem}) => {
 
-    const {name, grade, description, image_url, location, rating} = problem
+    const {name, grade, image_url, rating} = problem
 
     const starRating = "⭐".repeat(rating);
 

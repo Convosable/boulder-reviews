@@ -23,6 +23,10 @@ const BoudlerProblemDetails = ({boulderProblems}) => {
 
     const { name, grade, location, description, image_url, rating} = boulderProblem
     console.log(boulderProblem)
+
+    // add linnk for a new review?
+    // add and edit button for the review( { @current user is true ? "show edit button" : "dont show})
+    //same with a delete button
   return (
     <div>
         <div>

@@ -6,7 +6,6 @@ class CreateBoulderProblems < ActiveRecord::Migration[6.1]
       t.text :description
       t.string :image_url
       t.string :location
-      t.integer :rating
 
       t.timestamps
     end

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const NewReview = ({ boulderProblems, userId }) => {
 
@@ -11,6 +11,11 @@ const NewReview = ({ boulderProblems, userId }) => {
   const [search, setSearch] = useState("")
   const [error, setError] = useState("")
 
+
+  const navigate = useNavigate();
+
+
+    //need to update boudlerProblem.reviews once session is created??
 
   function handleCreateReview(e) {
     e.preventDefault()
@@ -31,6 +36,7 @@ const NewReview = ({ boulderProblems, userId }) => {
     .then((r) => {
       if (r.ok) {
         r.json().then((data) => console.log(data));
+        navigate(`/boulder_problems/${boulderProblem.id}`)
       } else {
         r.json().then((error) => setError(error.errors));
       }

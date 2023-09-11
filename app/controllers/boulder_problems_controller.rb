@@ -33,7 +33,7 @@ class BoulderProblemsController < ApplicationController
     end
 
     def boulder_problem_params
-        params.permit(:name, :grade, :location, :rating, :description, :image_url)
+        params.permit(:name, :grade, :location, :description, :image_url)
     end
 
 end

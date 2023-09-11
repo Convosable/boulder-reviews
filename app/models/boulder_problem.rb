@@ -8,6 +8,5 @@ class BoulderProblem < ApplicationRecord\
     validates :description, presence: true
     validates :image_url, presence: true
     validates :location, presence: true
-    validates :rating, presence: true, numericality: { in: 0..4 }
 
 end
