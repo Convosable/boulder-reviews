@@ -9,4 +9,8 @@ class BoulderProblem < ApplicationRecord\
     validates :image_url, presence: true
     validates :location, presence: true
 
+    def average_boulder_rating
+        reviews.average(:boulder_rating) || 0
+    end
+
 end
