@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 
-const BoudlerProblemDetails = ({boulderProblems}) => {
+const BoudlerProblemDetails = () => {
 
     const [boulderProblem, setBoulderProblem] = useState(null)
     const [error, setError] = useState('')
@@ -21,17 +21,23 @@ const BoudlerProblemDetails = ({boulderProblems}) => {
 
     if(!boulderProblem) return <h1>Loading...</h1>
 
-    const { name, grade, location, description, image_url, rating} = boulderProblem
+    const { name, grade, location, description, image_url} = boulderProblem
     console.log(boulderProblem)
 
     // add linnk for a new review?
     // add and edit button for the review( { @current user is true ? "show edit button" : "dont show})
     //same with a delete button
+
+    //adds average for all ratings for boulder
+    const sum = boulderProblem.reviews.reduce((accumulator, review) => {
+        return accumulator + review.boulder_rating
+    },0);
+    const averageRating = sum/boulderProblem.reviews.length;
   return (
     <div>
         <div>
             <h1>{name} - V{grade}</h1>
-            <h2>⭐ {rating}</h2>
+            <h2>{boulderProblem.reviews.length > 0 ? averageRating : "Unrated"}</h2>
             <img src={image_url} alt={name} />
             <h3>{location}</h3>
             <p>{description}</p>

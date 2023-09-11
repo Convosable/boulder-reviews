@@ -12,7 +12,7 @@ const BoulderProblems = ({ boulderProblems }) => {
     //add filter by rating as dropdown
 
     // add a new boulder problem form
-    
+        
     return (
 
         <div>
