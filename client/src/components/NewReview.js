@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
-const NewClimbingSession = ({ boulderProblems, userId }) => {
+const NewReview = ({ boulderProblems, userId }) => {
 
   const [date, setDate] = useState("")
-  const [isPrivate, setIsPrivate] = useState(false)
   const [isComplete, setIsComplete] = useState(false)
   const [boulderRating, setBoulderRating] = useState(0)
   const [notes, setNotes] = useState("")
@@ -13,18 +12,17 @@ const NewClimbingSession = ({ boulderProblems, userId }) => {
   const [error, setError] = useState("")
 
 
-  function handleCreateSession(e) {
+  function handleCreateReview(e) {
     e.preventDefault()
-    fetch('/climbing_sessions', {
+    fetch('/reviews', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
         date: date,
-        private: isPrivate,
         completed: isComplete,
-        boulder_rating: boulderRating,
+        boulder_rating: parseInt(boulderRating),
         notes: notes,
         user_id: userId,
         boulder_problem_id: boulderProblem.id
@@ -50,7 +48,7 @@ const NewClimbingSession = ({ boulderProblems, userId }) => {
 
   return (
     <div className='new-climbing-session-form'>
-      <h1>New Climbing Session</h1>
+      <h1>New Review</h1>
 
 
       <h3>Search for Boulder Problem:</h3>
@@ -65,18 +63,12 @@ const NewClimbingSession = ({ boulderProblems, userId }) => {
             </div>
 
 
-      <form onSubmit={handleCreateSession}>
+      <form onSubmit={handleCreateReview}>
         <label>Date:</label>
         <input 
           type = "date"
           value = {date} 
           onChange = {(e) => setDate(e.target.value)}  
-        /> <br></br>
-        <label>Private:</label>
-        <input 
-          type = "checkbox"
-          value = {isPrivate} 
-          onChange = {(e) => setIsPrivate(e.target.checked)}   
         /> <br></br>
         <label>Complete:</label>
         <input 
@@ -105,4 +97,4 @@ const NewClimbingSession = ({ boulderProblems, userId }) => {
   )
 }
 
-export default NewClimbingSession;
+export default NewReview;

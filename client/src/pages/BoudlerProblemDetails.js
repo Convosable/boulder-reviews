@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 const BoudlerProblemDetails = ({boulderProblems}) => {
 
@@ -22,10 +22,7 @@ const BoudlerProblemDetails = ({boulderProblems}) => {
     if(!boulderProblem) return <h1>Loading...</h1>
 
     const { name, grade, location, description, image_url, rating} = boulderProblem
-
-    const reviews = boulderProblem.climbing_sessions.map((sesh) => {
-        return sesh.date
-    })
+    console.log(boulderProblem)
   return (
     <div>
         <div>
@@ -35,9 +32,19 @@ const BoudlerProblemDetails = ({boulderProblems}) => {
             <h3>{location}</h3>
             <p>{description}</p>
         </div>
-        <div>
-            {boulderProblem.climbing_sessions.map((sesh) =>
-                <h2>{sesh.date}</h2>
+        <Link to='/'>
+
+        </Link>
+        <div className = 'reviews-container'>
+            {boulderProblem.reviews.map((rev) =>
+            <div className='review-card' key = {rev.id}>
+                <p>{rev.username}</p>
+                <p>{rev.date}</p>
+                Completed: {rev.completed ? '✅' : '❌'}
+                <p>Rating: {rev.boulder_rating} </p>
+                <p>Notes: {rev.notes}</p>
+
+            </div>
             )}
         </div>
         

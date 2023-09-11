@@ -1,7 +1,10 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { NavLink } from 'react-router-dom'
+import { UserContext } from '../context/UserContext'
 
-const NavBar = ({ user, setUser }) => {
+const NavBar = () => {
+
+    const {setUser} = useContext(UserContext)
 
     function handleLogout() {
         fetch('/logout', {
@@ -16,13 +19,9 @@ const NavBar = ({ user, setUser }) => {
 
     return (
         <div className = "navbar">
-            <div className='navbar-left'>
+            <div>
                 <NavLink to = "/" exact = "true">Home</NavLink>
-                <NavLink to = "/climbing_sessions/new" exact = "true">Create Climbing Session</NavLink>
-            </div>
-            <div className='navbar-right'>
-                <h4>{user.name}</h4>
-                <img src = {user.image_url} alt = {user.name} />
+                <NavLink to = "/reviews/new" exact = "true">New Review</NavLink>
                 <button onClick = {handleLogout} >Logout</button>
             </div>
         </div>

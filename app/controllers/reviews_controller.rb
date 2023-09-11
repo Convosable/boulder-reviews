@@ -27,13 +27,6 @@ class ReviewsController < ApplicationController
         head :no_content
     end
 
-
-    # is this the right way to do this?? I could always filter in the frontend (only display sessions == to current_user) but i dont think thats the right way to do it??)
-    def user_review
-        sessions = @current_user.review
-        render json: sessions, status: :ok
-    end
-
     private
 
     def find_review
@@ -42,7 +35,6 @@ class ReviewsController < ApplicationController
 
     def review_params
         params.permit(:date, :completed, :boulder_rating, :notes, :boulder_problem_id, :user_id)
-        # boulder_problem_id & user_id used just for postman testing purposes?
     end
 
 end

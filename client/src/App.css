@@ -26,4 +26,12 @@
   grid-gap: 20px;
 }
 
+.reviews-container {
+  border: 2px solid #000;
+  margin: 10px;
+}
 
+.review-card {
+  border: 5px solid #000;
+  margin: 10px;
+}

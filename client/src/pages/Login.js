@@ -2,11 +2,11 @@ import React from 'react'
 import LoginForm from '../components/LoginForm'
 import SignUpForm from '../components/SignUpForm'
 
-const Login = ({ setUser }) => {
+const Login = () => {
   return (
     <div>
-        <LoginForm setUser = {setUser} />
-        <SignUpForm setUser = {setUser}/>
+        <LoginForm />
+        <SignUpForm />
     </div>
   )
 }
