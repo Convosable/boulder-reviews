@@ -2,13 +2,12 @@ import React, { useContext } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 
-const BoudlerProblemDetails = ({ boulderProblems }) => {
+const BoudlerProblemDetails = ({ boulderProblems, handleReviewDelete }) => {
 
     const {id} = useParams()
     const {user} = useContext(UserContext)
 
-    const boulderProblem = boulderProblems?.find(problem => problem.id == id);
-    console.log(boulderProblem)
+    const boulderProblem = boulderProblems?.find(problem => problem.id === parseInt(id));
 
     if(!boulderProblem) return <h1>Loading...</h1>
 
@@ -22,13 +21,13 @@ const BoudlerProblemDetails = ({ boulderProblems }) => {
         
     }
     
-    function handleDelete(rev) {
+    function deleteReview(rev) {
         fetch(`/reviews/${rev.id}`, {
             method: 'DELETE',
         })
-        .then((e) => console.log(e));
-        console.log(rev)
+        .then(() => handleReviewDelete(rev.id, id));
     }
+    
 
     //need to update state held for reviews on a boulder problem once deleted
 
@@ -55,8 +54,8 @@ const BoudlerProblemDetails = ({ boulderProblems }) => {
                 Completed: {rev.completed ? '✅' : '❌'}
                 <p>Rating: {rev.boulder_rating} ⭐ </p>
                 <p>Notes: {rev.notes}</p>
-                {rev.username == user.username ? <button onClick = {() => handleEdit(rev)}>Edit</button> : null }
-                {rev.username == user.username ? <button onClick = {() => handleDelete(rev)}>Delete</button> : null }
+                {rev.username === user.username ? <button onClick = {() => handleEdit(rev)}>Edit</button> : null }
+                {rev.username === user.username ? <button onClick = {() => deleteReview(rev)}>Delete</button> : null }
             </div>
             )}
         </div>

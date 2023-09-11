@@ -29,6 +29,19 @@ function App() {
     })
   }, []);
 
+  function handleReviewDelete(revId, boulderProblemId) {
+    console.log(revId)
+    console.log(boulderProblemId)
+    const correctProblem = boulderProblems.map((problem) => {
+      if (problem.id === parseInt(boulderProblemId)) {
+        const updatedReviews = problem.reviews.filter((review) => review.id !== revId);
+        return {...problem, reviews: updatedReviews}
+      }
+      return problem
+    })
+    setBoulderProblems(correctProblem)
+  }
+  
   if (!user) return <Login />;
 
   return (    
@@ -38,7 +51,7 @@ function App() {
         <Routes>
           <Route path="/" element={<BoulderProblems boulderProblems = {boulderProblems}/>} />
           <Route path="/reviews/new" element={<NewReview userId = {user.id} boulderProblems = {boulderProblems}/>} />
-          <Route path="/boulder_problems/:id" element={<BoudlerProblemDetails boulderProblems = {boulderProblems}/>} />
+          <Route path="/boulder_problems/:id" element={<BoudlerProblemDetails boulderProblems = {boulderProblems} handleReviewDelete = {handleReviewDelete}/>} />
         </Routes>
     </div>
   );
