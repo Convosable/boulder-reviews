@@ -6,16 +6,15 @@ const BoulderProblemCard = ({problem}) => {
 
     // const starRating = "⭐".repeat(rating);
 
-    const sum = problem.reviews.reduce((accumulator, review) => {
-        return accumulator + review.boulder_rating
-    },0);
-    const averageRating = sum/problem.reviews.length;
+    // change boulder problem rating to be handled in the backend
+
+    console.log(problem.reviews)
 
     return (
         <div className='boulder-problem-card'>
             <img src={image_url} alt={name} />
             <h1>{name}</h1>
-            <h2>V{grade} - {problem.reviews.length > 0 ? averageRating : "Unrated"}⭐</h2>
+            <h2>V{grade} - {problem.reviews.length > 0 ? problem.reviews.average_boulder_rating : "Unrated"}⭐</h2>
         </div>
     )
 }

@@ -14,4 +14,8 @@ class Review < ApplicationRecord
         self.user.username
     end
 
+    def self.average_rating
+        average(:boulder_rating)
+    end
+
 end
