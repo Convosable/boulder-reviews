@@ -10,7 +10,8 @@ class BoulderProblem < ApplicationRecord\
     validates :location, presence: true
 
     def average_boulder_rating
-        reviews.average(:boulder_rating) || 0
+        average = reviews.average(:boulder_rating)
+        average.nil? ? 0 : average.round(2)
     end
 
 end
