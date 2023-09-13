@@ -1,23 +1,20 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const NewReview = ({ boulderProblems, userId }) => {
+//add useContext to get rid of userId prop
+
+const NewReview = ({ boulderProblems, userId, handleNewReview }) => {
 
   const [date, setDate] = useState("")
   const [isComplete, setIsComplete] = useState(false)
   const [boulderRating, setBoulderRating] = useState(0)
   const [notes, setNotes] = useState("")
-  const [boulderProblem, setBoulderProblem] = useState("")
-  const [search, setSearch] = useState("")
   const [error, setError] = useState("")
 
-
+  const {id} = useParams()
   const navigate = useNavigate();
 
-
-    //need to update boudlerProblem.reviews once session is created??
-
-  function handleCreateReview(e) {
+  function createReview(e) {
     e.preventDefault()
     fetch('/reviews', {
       method: 'POST',
@@ -29,47 +26,27 @@ const NewReview = ({ boulderProblems, userId }) => {
         completed: isComplete,
         boulder_rating: parseInt(boulderRating),
         notes: notes,
-        user_id: userId,
-        boulder_problem_id: boulderProblem.id
+        boulder_problem_id: id,
+        user_id: userId
       })
     })
     .then((r) => {
       if (r.ok) {
-        r.json().then((data) => console.log(data));
-        navigate(`/boulder_problems/${boulderProblem.id}`)
+        r.json().then((review) => handleNewReview(review, id));
+        navigate(`/boulder_problems/${id}`)
       } else {
         r.json().then((error) => setError(error.errors));
       }
     })
   }
 
-  const filterBySearch = boulderProblems?.filter(problem => {
-      return problem.name.toLowerCase().includes(search.toLowerCase())
-  })
-
-  function handleBoudlerProblemClick(problem) {
-    setBoulderProblem(problem)
-    setSearch(problem.name)
-  }
+  const boulderProblem = boulderProblems?.find(prob => prob.id === parseInt(id))
 
   return (
     <div className='new-climbing-session-form'>
-      <h1>New Review</h1>
+      <h1>New Review: {boulderProblem.name}</h1>
 
-
-      <h3>Search for Boulder Problem:</h3>
-            <input type='text' value = {search} onChange={ (e) => setSearch(e.target.value)} />
-            <div className='boulder-problem-container'>
-                <h1>Boulder Problems</h1>
-                {filterBySearch?.map((problem) => (
-                  <div key = {problem.id} onClick = {() => handleBoudlerProblemClick(problem)} className="boulder-info-short">
-                    <h3> {problem.name} - V{problem.grade} {"⭐".repeat(problem.rating)}</h3>
-                  </div>
-                ))}
-            </div>
-
-
-      <form onSubmit={handleCreateReview}>
+      <form onSubmit={createReview}>
         <label>Date:</label>
         <input 
           type = "date"

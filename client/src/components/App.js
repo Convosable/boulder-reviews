@@ -15,7 +15,7 @@ function App() {
 
   const {user} = useContext(UserContext)
 
-  const [boulderProblems, setBoulderProblems] = useState(null)
+  const [boulderProblems, setBoulderProblems] = useState([])
 
   useEffect(() => {
     fetch("/boulder_problems")
@@ -29,9 +29,17 @@ function App() {
     })
   }, []);
 
+  function handleNewReview(newReview, boulderProblemId) {
+    const updatedProblems = boulderProblems.map((problem) => {
+      if (problem.id === boulderProblemId) {
+        return {...problem, reviews: [...problem.reviews, newReview]}
+      }
+      return problem
+    })
+    setBoulderProblems(updatedProblems);
+  }
+
   function handleReviewDelete(revId, boulderProblemId) {
-    console.log(revId)
-    console.log(boulderProblemId)
     const correctProblem = boulderProblems.map((problem) => {
       if (problem.id === parseInt(boulderProblemId)) {
         const updatedReviews = problem.reviews.filter((review) => review.id !== revId);
@@ -50,7 +58,7 @@ function App() {
       <NavBar />
         <Routes>
           <Route path="/" element={<BoulderProblems boulderProblems = {boulderProblems}/>} />
-          <Route path="/reviews/new" element={<NewReview userId = {user.id} boulderProblems = {boulderProblems}/>} />
+          <Route path="/boulder_problems/:id/reviews/new" element={<NewReview userId = {user.id} boulderProblems = {boulderProblems} handleNewReview = {handleNewReview}/>} />
           <Route path="/boulder_problems/:id" element={<BoudlerProblemDetails boulderProblems = {boulderProblems} handleReviewDelete = {handleReviewDelete}/>} />
         </Routes>
     </div>

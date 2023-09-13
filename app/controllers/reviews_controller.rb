@@ -11,7 +11,8 @@ class ReviewsController < ApplicationController
 
     def create
         # put find Boulder in here and create via the boulder??
-        review = Review.create!(review_params)
+        problem = BoulderProblem.find(params[:boulder_problem_id])
+        review = problem.reviews.create!(review_params)
         render json: review, status: :created
     end
 

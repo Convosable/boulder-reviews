@@ -8,7 +8,6 @@ const BoudlerProblemDetails = ({ boulderProblems, handleReviewDelete }) => {
     const {user} = useContext(UserContext)
 
     const boulderProblem = boulderProblems?.find(problem => problem.id === parseInt(id));
-
     if(!boulderProblem) return <h1>Loading...</h1>
 
     const { name, grade, location, description, image_url, reviews, average_boulder_rating} = boulderProblem
@@ -26,10 +25,9 @@ const BoudlerProblemDetails = ({ boulderProblems, handleReviewDelete }) => {
             method: 'DELETE',
         })
         .then(() => handleReviewDelete(rev.id, id));
+        // this works for updating statae, but the average rating doesnt update on the page
     }
     
-
-    //need to update state held for reviews on a boulder problem once deleted
 
     //need to figure out the edit dlete button to be handled in the backend
 
@@ -42,8 +40,8 @@ const BoudlerProblemDetails = ({ boulderProblems, handleReviewDelete }) => {
             <h3>{location}</h3>
             <p>{description}</p>
         </div>
-        <Link to='/'>
-
+        <Link to={`/boulder_problems/${id}/reviews/new`}>
+            Click Me To Review
         </Link>
         <div className = 'reviews-container'>
             <h2>Reviews:</h2>
