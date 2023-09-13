@@ -1,9 +1,13 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import BoulderProblemCard from '../components/BoulderProblemCard';
 import {Link} from 'react-router-dom';
-const BoulderProblems = ({ boulderProblems }) => {
+import { BoulderProblemContext } from '../context/BoulderProblemContext';
+
+
+const BoulderProblems = () => {
     
-    const [search, setSearch] = useState("")
+    const [search, setSearch] = useState("");
+    const {boulderProblems} = useContext(BoulderProblemContext);
 
     const filterBySearch = boulderProblems?.filter(problem => {
         return problem.name.toLowerCase().includes(search.toLowerCase())

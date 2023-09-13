@@ -1,11 +1,14 @@
 import React, { useContext } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
+import { BoulderProblemContext } from '../context/BoulderProblemContext'
 
-const BoudlerProblemDetails = ({ boulderProblems, handleReviewDelete }) => {
+const BoudlerProblemDetails = () => {
 
     const {id} = useParams()
     const {user} = useContext(UserContext)
+    const {boulderProblems, setBoulderProblems} = useContext(BoulderProblemContext);
+
 
     const boulderProblem = boulderProblems?.find(problem => problem.id === parseInt(id));
     if(!boulderProblem) return <h1>Loading...</h1>
@@ -27,6 +30,17 @@ const BoudlerProblemDetails = ({ boulderProblems, handleReviewDelete }) => {
         .then(() => handleReviewDelete(rev.id, id));
         // this works for updating statae, but the average rating doesnt update on the page
     }
+
+    function handleReviewDelete(revId, boulderProblemId) {
+        const correctProblem = boulderProblems.map((problem) => {
+          if (problem.id === parseInt(boulderProblemId)) {
+            const updatedReviews = problem.reviews.filter((review) => review.id !== revId);
+            return {...problem, reviews: updatedReviews}
+          }
+          return problem
+        })
+        setBoulderProblems(correctProblem)
+      }
     
 
     //need to figure out the edit dlete button to be handled in the backend

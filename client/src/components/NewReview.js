@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
+import { BoulderProblemContext } from '../context/BoulderProblemContext';
 
 //add useContext to get rid of userId prop
 
-const NewReview = ({ boulderProblems, userId, handleNewReview }) => {
+const NewReview = ({ userId }) => {
 
   const [date, setDate] = useState("")
   const [isComplete, setIsComplete] = useState(false)
   const [boulderRating, setBoulderRating] = useState(0)
   const [notes, setNotes] = useState("")
   const [error, setError] = useState("")
+
+  const {boulderProblems, setBoulderProblems} = useContext(BoulderProblemContext);
 
   const {id} = useParams()
   const navigate = useNavigate();
@@ -39,6 +42,17 @@ const NewReview = ({ boulderProblems, userId, handleNewReview }) => {
       }
     })
   }
+
+  function handleNewReview(newReview, boulderProblemId) {
+    const updatedProblems = boulderProblems.map((problem) => {
+      if (problem.id === boulderProblemId) {
+        return {...problem, reviews: [...problem.reviews, newReview]}
+      }
+      return problem
+    })
+    setBoulderProblems(updatedProblems);
+  }
+
 
   const boulderProblem = boulderProblems?.find(prob => prob.id === parseInt(id))
 
