@@ -1,17 +1,17 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
+import { UserContext } from '../context/UserContext';
 import { BoulderProblemContext } from '../context/BoulderProblemContext';
 
-//add useContext to get rid of userId prop
+const NewReview = () => {
 
-const NewReview = ({ userId }) => {
+  const [date, setDate] = useState("");
+  const [isComplete, setIsComplete] = useState(false);
+  const [boulderRating, setBoulderRating] = useState(0);
+  const [notes, setNotes] = useState("");
+  const [error, setError] = useState("");
 
-  const [date, setDate] = useState("")
-  const [isComplete, setIsComplete] = useState(false)
-  const [boulderRating, setBoulderRating] = useState(0)
-  const [notes, setNotes] = useState("")
-  const [error, setError] = useState("")
-
+  const {user} = useContext(UserContext);
   const {boulderProblems, setBoulderProblems} = useContext(BoulderProblemContext);
 
   const {id} = useParams()
@@ -30,12 +30,12 @@ const NewReview = ({ userId }) => {
         boulder_rating: parseInt(boulderRating),
         notes: notes,
         boulder_problem_id: id,
-        user_id: userId
+        user_id: user.id
       })
     })
     .then((r) => {
       if (r.ok) {
-        r.json().then((review) => handleNewReview(review, id));
+        r.json().then((review) => handleNewReview(review));
         navigate(`/boulder_problems/${id}`)
       } else {
         r.json().then((error) => setError(error.errors));
@@ -43,9 +43,11 @@ const NewReview = ({ userId }) => {
     })
   }
 
-  function handleNewReview(newReview, boulderProblemId) {
+
+  // add an update average rating too?? on this handleNewReview
+  function handleNewReview(newReview) {
     const updatedProblems = boulderProblems.map((problem) => {
-      if (problem.id === boulderProblemId) {
+      if (problem.id === boulderProblem.id) {
         return {...problem, reviews: [...problem.reviews, newReview]}
       }
       return problem

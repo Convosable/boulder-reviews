@@ -1,16 +1,16 @@
 import '../App.css';
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
+import { Routes, Route } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
+import { BoulderProblemProvider } from '../context/BoulderProblemContext';
 import NavBar from "./NavBar";
 import Login from "../pages/Login";
-import { Routes, Route } from 'react-router-dom';
 import BoulderProblems from "../pages/BoulderProblems";
 import NewReview from './NewReview';
 import BoudlerProblemDetails from '../pages/BoudlerProblemDetails';
-import { UserContext } from '../context/UserContext';
-import { BoulderProblemProvider } from '../context/BoulderProblemContext';
+import NewBoulderProblem from '../pages/NewBoulderProblem';
 
-// need to update the readMe --- create boulders(no database of all boudlers) only the ones the  user creates
-
+// need to update the readMe
 
 function App() {
 
@@ -25,8 +25,9 @@ function App() {
           <NavBar />
             <Routes>
               <Route path="/" element={<BoulderProblems />} />
-              <Route path="/boulder_problems/:id/reviews/new" element={<NewReview userId = {user.id} />} />
+              <Route path="/boulder_problems/:id/reviews/new" element={<NewReview />} />
               <Route path="/boulder_problems/:id" element={<BoudlerProblemDetails />} />
+              <Route path="/boulder_problems/new" element={<NewBoulderProblem />} />
             </Routes>
         </BoulderProblemProvider>
     </div>

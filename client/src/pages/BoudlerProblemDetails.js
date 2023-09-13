@@ -27,13 +27,13 @@ const BoudlerProblemDetails = () => {
         fetch(`/reviews/${rev.id}`, {
             method: 'DELETE',
         })
-        .then(() => handleReviewDelete(rev.id, id));
-        // this works for updating statae, but the average rating doesnt update on the page
+        .then(() => handleReviewDelete(rev.id));
+        // this works for updating statae, but the average rating doesnt update on the page, only updates when it switches from a number to unrated
     }
 
-    function handleReviewDelete(revId, boulderProblemId) {
+    function handleReviewDelete(revId) {
         const correctProblem = boulderProblems.map((problem) => {
-          if (problem.id === parseInt(boulderProblemId)) {
+          if (problem.id === parseInt(id)) {
             const updatedReviews = problem.reviews.filter((review) => review.id !== revId);
             return {...problem, reviews: updatedReviews}
           }
@@ -42,7 +42,6 @@ const BoudlerProblemDetails = () => {
         setBoulderProblems(correctProblem)
       }
     
-
     //need to figure out the edit dlete button to be handled in the backend
 
   return (
