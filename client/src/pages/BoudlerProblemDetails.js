@@ -2,16 +2,15 @@ import React, { useContext, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 import { BoulderProblemContext } from '../context/BoulderProblemContext'
+import EditReview from '../components/EditReview'
 
 const BoudlerProblemDetails = () => {
 
-    const [error, setError] = useState('')
+    const [showEditForm, setShowEditForm] = useState(false)
 
     const {id} = useParams()
     const {user} = useContext(UserContext)
     const {boulderProblems, setBoulderProblems} = useContext(BoulderProblemContext);
-
-
 
     const boulderProblem = boulderProblems?.find(problem => problem.id === parseInt(id));
     if(!boulderProblem) return <h1>Loading...</h1>
@@ -22,9 +21,6 @@ const BoudlerProblemDetails = () => {
     // add and edit button for the review( { @current user is true ? "show edit button" : "dont show})
     //same with a delete button
 
-    function handleEdit(rev) {
-        
-    }
     
     function deleteReview(rev) {
         fetch(`/reviews/${rev.id}`, {
@@ -47,11 +43,9 @@ const BoudlerProblemDetails = () => {
               return problem
             })
             setBoulderProblems(correctProblem)
-        } else {
-            return setError("Unauthorized. Review must belong to the current user to make changes or delete.")
         }
       }
-    
+          
   return (
     <div>
         <div>
@@ -73,12 +67,12 @@ const BoudlerProblemDetails = () => {
                 Completed: {rev.completed ? '✅' : '❌'}
                 <p>Rating: {rev.boulder_rating} ⭐ </p>
                 <p>Notes: {rev.notes}</p>
-                {rev.username === user.username ? <button onClick = {() => handleEdit(rev)}>Edit</button> : null }
+                {rev.username === user.username ? <button onClick = {() => setShowEditForm(!showEditForm)}>Edit</button> : null }
                 {rev.username === user.username ? <button onClick = {() => deleteReview(rev)}>Delete</button> : null }
 
                 {/* <button onClick = {() => handleEdit(rev)}>Edit</button>
                 <button onClick = {() => deleteReview(rev)}>Delete</button> <br></br> */}
-                {error}
+                {showEditForm ? <EditReview rev = {rev} /> : null}
             </div>
             )}
         </div>
