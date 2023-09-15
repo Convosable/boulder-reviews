@@ -48,6 +48,8 @@ const NewBoulderProblem = () => {
         setBoulderProblems([...boulderProblems, problem])
     }
 
+    //add a delete boulder button
+
   return (
     <div>
         <form onSubmit={handleNewBoulderSubmit}>
