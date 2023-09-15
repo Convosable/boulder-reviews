@@ -8,8 +8,8 @@ const BoudlerProblemDetails = () => {
 
     const [showEditForm, setShowEditForm] = useState(false)
 
-    const {id} = useParams()
     const {user} = useContext(UserContext)
+    const {id} = useParams()
     const {boulderProblems, setBoulderProblems} = useContext(BoulderProblemContext);
 
     const boulderProblem = boulderProblems?.find(problem => problem.id === parseInt(id));
@@ -36,16 +36,42 @@ const BoudlerProblemDetails = () => {
     function handleReviewDelete(rev) {
         if(user.username === rev.username) {
             const correctProblem = boulderProblems.map((problem) => {
-              if (problem.id === parseInt(id)) {
-                const updatedReviews = problem.reviews.filter((review) => review.id !== rev.id);
-                return {...problem, reviews: updatedReviews}
-              }
-              return problem
+                if (problem.id === parseInt(id)) {
+                    const updatedReviews = problem.reviews.filter((review) => review.id !== rev.id);
+                    return {...problem, reviews: updatedReviews}
+                }
+                return problem
             })
             setBoulderProblems(correctProblem)
         }
       }
-          
+
+      // why doesnt this work? ^^^
+    //   function handleReviewDelete(rev) {
+    //     if (user.username === rev.username) {
+    //         const updatedReviews = boulderProblem.reviews.filter((review) => review.id !== rev.id);
+    //         setBoulderProblems({ ...boulderProblem, reviews: updatedReviews });
+    //     }
+    // }
+    // same with edit below... why cant i just use boulderProblem... i get error that boudlerProblem.find() form above isnt valid method...
+
+    function handleReviewEdit(rev) {
+        const updatedBoulderProblems = boulderProblems.map((problem) => {
+            if (problem.id === parseInt(id)) {
+                const updatedReviews = problem.reviews.map((review) => {
+                    if (review.id === rev.id) {
+                        return rev
+                    }
+                    return review
+                });
+                return {...problem, reviews: updatedReviews};
+            }
+            return problem;
+        }) 
+        setBoulderProblems(updatedBoulderProblems);
+        setShowEditForm(false)
+    }
+
   return (
     <div>
         <div>
@@ -72,7 +98,7 @@ const BoudlerProblemDetails = () => {
 
                 {/* <button onClick = {() => handleEdit(rev)}>Edit</button>
                 <button onClick = {() => deleteReview(rev)}>Delete</button> <br></br> */}
-                {showEditForm ? <EditReview rev = {rev} /> : null}
+                {showEditForm ? <EditReview rev = {rev}  boulderProblem = {boulderProblem} handleReviewEdit = {handleReviewEdit}/> : null}
             </div>
             )}
         </div>

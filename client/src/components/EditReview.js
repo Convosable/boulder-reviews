@@ -1,13 +1,13 @@
 import React, {useState} from 'react'
 
-const EditReview = ({ rev }) => {
+const EditReview = ({ rev, boulderProblem, handleReviewEdit }) => {
     
     const [date, setDate] = useState(rev.date);
     const [isComplete, setIsComplete] = useState(rev.completed);
     const [boulderRating, setBoulderRating] = useState(rev.boulder_rating); 
     const [notes, setNotes] = useState(rev.notes);
     const [errors, setErrors] = useState(false);
-    
+
     function editReview(e) {
         e.preventDefault();
         fetch(`/reviews/${rev.id}`, {
@@ -29,10 +29,6 @@ const EditReview = ({ rev }) => {
                 r.json().then(error => setErrors(error.errors));
             }
         })
-    }
-
-    function handleReviewEdit(rev) {
-
     }
 
     return (
