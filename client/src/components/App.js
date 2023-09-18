@@ -20,9 +20,9 @@ function App() {
 
   return (    
     <div className="App">
-      <h1>Welcome, {user.name}!</h1>
         <BoulderProblemProvider>
           <NavBar />
+            <h1>Welcome, {user.name}!</h1>
             <Routes>
               <Route path="/" element={<BoulderProblems />} />
               <Route path="/boulder_problems/:id/reviews/new" element={<NewReview />} />

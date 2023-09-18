@@ -51,16 +51,18 @@ const NewBoulderProblem = () => {
     //add a delete boulder button
 
   return (
-    <div>
+    <div className='new-boulder-input'>
         <form onSubmit={handleNewBoulderSubmit}>
             <label>Name:</label>
             <input 
+            className='wide-input'
                 type='text'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-            /> <br></br>
+            /> <br></br> <br></br>
             <label>Grade:</label>
             <select 
+                className='wide-input'
                 value = {grade}
                 onChange = {(e) => setGrade(e.target.value)}>
                 {Array.from({ length: 18 }, (i, index) => (
@@ -68,25 +70,28 @@ const NewBoulderProblem = () => {
                         V{index}
                     </option>
                 ))}
-            </select> <br></br>
+            </select> <br></br> <br></br>
             <label>Description:</label>
-            <input 
-                type='text'
+            <textarea 
+                className="big-input"
+                type='textbox'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-            /> <br></br>
+            ></textarea> <br></br> <br></br>
             <label>Image:</label>
             <input 
+                className='wide-input'
                 type='text'
                 value={imageUrl}
                 onChange={(e) => setImageUrl(e.target.value)}
-            /> <br></br>
+            /> <br></br> <br></br>
             <label>Location:</label>
             <input 
+                className='wide-input'
                 type='text'
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
-            /> <br></br>
+            /> <br></br> <br></br>
             <input 
                 type='submit'
             /> <br></br>

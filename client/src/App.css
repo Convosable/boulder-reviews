@@ -1,8 +1,13 @@
+body {
+  background-color: #CCB4AF;
+}
+
 .App {
   text-align: center;
 }
 
 .boulder-problem-card img {
+  margin-top: 10px;
   width: 300px;
   height: 225px;
 }
@@ -17,13 +22,18 @@
 }
 
 .user-header h1 {
-  margin-right: 10px; /* Add some spacing between the username and image */
+  margin-right: 10px;
 }
 
 .boulder-problem-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
+}
+
+.boulder-problem-card {
+  border: 2px solid #000;
+  margin: 10px;
 }
 
 .reviews-container {
@@ -34,7 +44,7 @@
 .review-card {
   border: 5px solid #000;
   margin: 10px;
-}
+}     
 
 .boulder-problem-filters {
   display: inline-block;
@@ -45,4 +55,58 @@
 .filter-label {
   font-size: 20px;
   font-weight: bold;
+}
+
+.navbar {
+  padding: 10px;
+  text-align: left;
+}
+.navbar-link {
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  text-decoration: none;
+  margin-right: 10px;
+  border-radius: 5px;
+  font-size: 16px
+}
+
+.logout-button {
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px
+}
+
+.space-element {
+  margin-top: 20px;
+}
+
+.new-boulder-input label {
+  font-size: 20px;
+}
+
+.big-input {
+  padding: 10px;
+  height: 75px;
+  width: 300px;
+}
+
+.wide-input {
+  width: 300px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.boulder-problem-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.boulder-problem-details {
+  border: 2px solid #000;
+  margin: 10px;
 }

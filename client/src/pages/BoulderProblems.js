@@ -14,7 +14,7 @@ const BoulderProblems = () => {
         return problem.name.toLowerCase().includes(search.toLowerCase())
     })
 
-    const masterFilter = filterBySearch.filter(problem => {
+    const filterProblems = filterBySearch.filter(problem => {
         console.log(problem)
         if (grade === "All") {
             return problem
@@ -23,14 +23,12 @@ const BoulderProblems = () => {
         }
     })
 
-    //add filter by rating as dropdown
-        
     return (
 
         <div>
             <div className='boulder-problem-filters'>
                 <span className='filter-label'>
-                    Search for Boulder Problem:
+                    Search Boulder Problems:
                 </span>
                 <input 
                     type='text' 
@@ -53,10 +51,10 @@ const BoulderProblems = () => {
                     ))}
                 </select> <br></br>
             </div>
-                <h1>Boulder Problems</h1>
+            <div className='space-element'></div>
             <div className='boulder-problem-container'>
-                {masterFilter?.map((problem) => (
-                    <Link to={`/boulder_problems/${problem.id}`} key = {problem.id}>
+                {filterProblems?.map((problem) => (
+                    <Link className='boulder-problem-link' to={`/boulder_problems/${problem.id}`} key = {problem.id}>
                         <BoulderProblemCard problem = {problem}/>
                     </Link>
                 ))}

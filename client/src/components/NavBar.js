@@ -19,13 +19,11 @@ const NavBar = () => {
 
     return (
         <div className = "navbar">
-            <div>
-                <NavLink to = "/" exact = "true">Home</NavLink>
-                <NavLink to = "/boulder_problems/new" exact = "true">New Boulder Problem</NavLink>
-                <button onClick = {handleLogout} >Logout</button>
-            </div>
+                <NavLink to = "/" exact = "true" className="navbar-link">Home</NavLink>
+                <NavLink to = "/boulder_problems/new" exact = "true" className="navbar-link">New Boulder Problem</NavLink>
+                <button onClick = {handleLogout} className="logout-button">Logout</button>
         </div>
     )
-    }
+}
 
 export default NavBar;

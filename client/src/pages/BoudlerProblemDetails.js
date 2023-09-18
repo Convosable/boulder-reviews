@@ -18,7 +18,7 @@ const BoudlerProblemDetails = () => {
 
     console.log(boulderProblem)
 
-    const { name, grade, location, description, image_url, reviews, average_boulder_rating} = boulderProblem
+    const { name, grade, location, description, image_url, reviews, average_boulder_rating, number_of_ascents} = boulderProblem
 
     
     function deleteReview(rev) {
@@ -72,9 +72,11 @@ const BoudlerProblemDetails = () => {
 
   return (
     <div>
-        <div>
+        <div className='boulder-problem-details'>
             <h1>{name} - V{grade}</h1>
             <h2>Average Rating: {reviews.length > 0 ? average_boulder_rating + "⭐" : "Unrated"}</h2>
+            <h3>Ascents: {number_of_ascents}</h3>
+
             <img src={image_url} alt={name} />
             <h3>{location}</h3>
             <p>{description}</p>

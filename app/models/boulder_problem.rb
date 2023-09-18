@@ -14,6 +14,9 @@ class BoulderProblem < ApplicationRecord
         average.nil? ? 0 : average.round(2)
     end
 
-    #state doesnt uPDATE FOR AVERAGE_BOUDLER_RATING unkless the page is refreshed....
+    def number_of_ascents
+        ascent = self.reviews.where(completed: true).distinct.count('user_id')
+    end
+    #state doesnt uPDATE FOR AVERAGE_BOUDLER_RATING and number_of_ascents unkless the page is refreshed....
 
 end
