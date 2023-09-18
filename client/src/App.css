@@ -3,8 +3,8 @@
 }
 
 .boulder-problem-card img {
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 225px;
 }
 
 .boulder-info-short{
@@ -34,4 +34,15 @@
 .review-card {
   border: 5px solid #000;
   margin: 10px;
+}
+
+.boulder-problem-filters {
+  display: inline-block;
+  margin-right: 30px;
+
+}
+
+.filter-label {
+  font-size: 20px;
+  font-weight: bold;
 }

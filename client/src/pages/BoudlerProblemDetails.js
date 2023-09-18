@@ -11,15 +11,14 @@ const BoudlerProblemDetails = () => {
     const {user} = useContext(UserContext)
     const {id} = useParams()
     const {boulderProblems, setBoulderProblems} = useContext(BoulderProblemContext);
+    
 
     const boulderProblem = boulderProblems?.find(problem => problem.id === parseInt(id));
     if(!boulderProblem) return <h1>Loading...</h1>
 
-    const { name, grade, location, description, image_url, reviews, average_boulder_rating} = boulderProblem
+    console.log(boulderProblem)
 
-    // add linnk for a new review?
-    // add and edit button for the review( { @current user is true ? "show edit button" : "dont show})
-    //same with a delete button
+    const { name, grade, location, description, image_url, reviews, average_boulder_rating} = boulderProblem
 
     
     function deleteReview(rev) {
@@ -30,19 +29,18 @@ const BoudlerProblemDetails = () => {
         // this works for updating statae, but the average rating doesnt update on the page, only updates when it switches from a number to unrated
     }
 
-
-    // is this condition good practice? Im not sure how to render an error message since i dont get back a json response
-    // also using a condition like this prevents the review from being removed from state held in boulderProblems.reviews
     function handleReviewDelete(rev) {
         if(user.username === rev.username) {
-            const correctProblem = boulderProblems.map((problem) => {
+            const updatedBoulderProblems = boulderProblems.map((problem) => {
                 if (problem.id === parseInt(id)) {
                     const updatedReviews = problem.reviews.filter((review) => review.id !== rev.id);
                     return {...problem, reviews: updatedReviews}
                 }
                 return problem
             })
-            setBoulderProblems(correctProblem)
+            console.log(updatedBoulderProblems);
+            setBoulderProblems(updatedBoulderProblems)
+            console.log(boulderProblems);
         }
       }
 
@@ -95,9 +93,6 @@ const BoudlerProblemDetails = () => {
                 <p>Notes: {rev.notes}</p>
                 {rev.username === user.username ? <button onClick = {() => setShowEditForm(!showEditForm)}>Edit</button> : null }
                 {rev.username === user.username ? <button onClick = {() => deleteReview(rev)}>Delete</button> : null }
-
-                {/* <button onClick = {() => handleEdit(rev)}>Edit</button>
-                <button onClick = {() => deleteReview(rev)}>Delete</button> <br></br> */}
                 {showEditForm ? <EditReview rev = {rev}  boulderProblem = {boulderProblem} handleReviewEdit = {handleReviewEdit}/> : null}
             </div>
             )}

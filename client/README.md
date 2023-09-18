@@ -68,3 +68,24 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+/// Futurre implementation:
+
+create an admin ability for a user
+    - if admin 
+        then you can delete a boudler problem 
+        then you can delete any review that is inapropriate etc.
+
+for users:
+    - show a users profile
+        - shows a list of all the users completed climbs
+        -shows a list of all the users current projects
+    - able to view another users profile
+
+for boulder_problems:
+    - dont allow creation of the same boudler problem (if name already exists in databse)
+
+

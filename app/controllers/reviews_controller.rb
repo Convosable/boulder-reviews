@@ -16,16 +16,11 @@ class ReviewsController < ApplicationController
     end
 
     def update
-        # review = @current_user.reviews.find(params[:id])
-        #if review
-            #review.update! 
-        review = find_review
+        review = @current_user.reviews.find(params[:id])
         review.update!(review_params)
         render json: review, status: :accepted
     end
 
-    # this works... just need to set up an error message or condition in the frontend so state doesnt update incorrectly
-    #ask about still only renderinfg the buttons availble to the user that posted the review...
     def destroy
         review = @current_user.reviews.find(params[:id])
         review.delete
