@@ -40,7 +40,6 @@ const BoudlerProblemDetails = () => {
       }
 
     function handleReviewEdit(rev) {
-        console.log(rev)
         const updatedBoulderProblems = boulderProblems.map((problem) => {
             if (problem.id === parseInt(id)) {
                 const updatedReviews = problem.reviews.map((review) => {
@@ -49,14 +48,13 @@ const BoudlerProblemDetails = () => {
                     }
                     return review
                 });
-                return {...problem, reviews: updatedReviews};
+                return {...problem, average_boulder_rating: rev.boulder_problem.average_boulder_rating, number_of_ascents: rev.boulder_problem.number_of_ascents, reviews: updatedReviews};
             }
             return problem;
         }) 
         setBoulderProblems(updatedBoulderProblems);
         setShowEditForm(false)
     }
-
 
 
   return (
@@ -84,7 +82,7 @@ const BoudlerProblemDetails = () => {
                 <p>Notes: {rev.notes}</p>
                 {rev.username === user.username ? <button onClick = {() => setShowEditForm(!showEditForm)}>Edit</button> : null }
                 {rev.username === user.username ? <button onClick = {() => deleteReview(rev)}>Delete</button> : null }
-                {showEditForm ? <EditReview rev = {rev}  boulderProblem = {boulderProblem} handleReviewEdit = {handleReviewEdit}/> : null}
+                {rev.username === user.username && showEditForm ? <EditReview rev = {rev}  boulderProblem = {boulderProblem} handleReviewEdit = {handleReviewEdit}/> : null}
             </div>
             )}
         </div>

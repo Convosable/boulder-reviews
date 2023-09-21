@@ -45,7 +45,6 @@ const NewReview = () => {
 
 
   function handleNewReview(newReview) {
-    console.log(newReview)
     const updatedProblems = boulderProblems.map((problem) => {
       if (problem.id === boulderProblem.id) {
         return {...problem, number_of_ascents: newReview.boulder_problem.number_of_ascents ,average_boulder_rating: newReview.boulder_problem.average_boulder_rating, reviews: [...problem.reviews, newReview]}
@@ -54,9 +53,6 @@ const NewReview = () => {
     })
     setBoulderProblems(updatedProblems);
   }
-
-
-
 
   const boulderProblem = boulderProblems?.find(prob => prob.id === parseInt(id))
 

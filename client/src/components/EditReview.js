@@ -37,18 +37,24 @@ const EditReview = ({ rev, boulderProblem, handleReviewEdit }) => {
         <label>Date:</label>
         <input 
           type = "date"
-          value = {date} 
+          value = {date}
+          name='date' 
           onChange = {(e) => setDate(e.target.value)}  
         /> <br></br>
         <label>Complete:</label>
         <input 
           type = "checkbox"
           // nneed to adjust this so its auto checked when form is filled
-          value = {isComplete} 
-          onChange = {(e) => setIsComplete(e.target.checked)}  
+          name='isComplete'
+          checked={isComplete}
+          onChange = {(e) => setIsComplete(!isComplete)}   
         /> <br></br>
         <label>Boulder Rating:</label>
-        <select value = {boulderRating} onChange = {(e) => setBoulderRating(e.target.value)}>
+        <select 
+          value = {boulderRating} 
+          name='boulderRating'
+          onChange = {(e) => setBoulderRating(e.target.value)}
+        >
           <option value="0">0</option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -59,6 +65,7 @@ const EditReview = ({ rev, boulderProblem, handleReviewEdit }) => {
         <input 
           type = "text"
           value = {notes} 
+          name='notes'
           onChange = {(e) => setNotes(e.target.value)}  
         /> <br></br>
         <input type = "submit" value="Create Session!" />
