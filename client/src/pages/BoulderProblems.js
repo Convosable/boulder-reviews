@@ -44,7 +44,7 @@ const BoulderProblems = () => {
                     value = {grade}
                     onChange = {(e) => setGrade(e.target.value)}>
                         <option value = 'All'>All</option>
-                    {Array.from({ length: 18 }, (i, index) => (
+                    {Array.from({ length: 18 }, (v, index) => (
                         <option key={index} value={index}>
                             V{index}
                         </option>

@@ -16,8 +16,6 @@ const BoudlerProblemDetails = () => {
     const boulderProblem = boulderProblems?.find(problem => problem.id === parseInt(id));
     if(!boulderProblem) return <h1>Loading...</h1>
 
-    console.log(boulderProblem)
-
     const { name, grade, location, description, image_url, reviews, average_boulder_rating, number_of_ascents} = boulderProblem
 
     
@@ -26,34 +24,23 @@ const BoudlerProblemDetails = () => {
             method: 'DELETE',
         })
         .then(() => handleReviewDelete(rev));
-        // this works for updating statae, but the average rating doesnt update on the page, only updates when it switches from a number to unrated
     }
 
     function handleReviewDelete(rev) {
-        if(user.username === rev.username) {
             const updatedBoulderProblems = boulderProblems.map((problem) => {
                 if (problem.id === parseInt(id)) {
-                    const updatedReviews = problem.reviews.filter((review) => review.id !== rev.id);
-                    return {...problem, reviews: updatedReviews}
+                    const updatedReviews = problem.reviews.filter((review) => review.id !== rev.id);    
+                    const newAverageRating = updatedReviews.reduce((sum, review) => sum + review.boulder_rating, 0) / updatedReviews.length;                    
+                    const newAverageAscents = updatedReviews.filter((review) => review.completed).length;
+                    return {...problem, average_boulder_rating: newAverageRating, number_of_ascents: newAverageAscents, reviews: updatedReviews}
                 }
                 return problem
             })
-            console.log(updatedBoulderProblems);
             setBoulderProblems(updatedBoulderProblems)
-            console.log(boulderProblems);
-        }
       }
 
-      // why doesnt this work? ^^^
-    //   function handleReviewDelete(rev) {
-    //     if (user.username === rev.username) {
-    //         const updatedReviews = boulderProblem.reviews.filter((review) => review.id !== rev.id);
-    //         setBoulderProblems({ ...boulderProblem, reviews: updatedReviews });
-    //     }
-    // }
-    // same with edit below... why cant i just use boulderProblem... i get error that boudlerProblem.find() form above isnt valid method...
-
     function handleReviewEdit(rev) {
+        console.log(rev)
         const updatedBoulderProblems = boulderProblems.map((problem) => {
             if (problem.id === parseInt(id)) {
                 const updatedReviews = problem.reviews.map((review) => {
@@ -69,6 +56,8 @@ const BoudlerProblemDetails = () => {
         setBoulderProblems(updatedBoulderProblems);
         setShowEditForm(false)
     }
+
+
 
   return (
     <div>
@@ -105,14 +94,3 @@ const BoudlerProblemDetails = () => {
 }
 
 export default BoudlerProblemDetails;
-
-// Note: a user should only be able to edit and delete resources if they are logged in and the creator of that resource. For example, if we consider the example described below with models of User, DogHouse, and Review, I would only be able to edit or delete the reviews that I created. This protection should occur in the back end of the project. Simply altering the front end to hide the edit & delete buttons is insufficient in terms of security. Assuming you have a current_user method and a post belongs to a user, the code needed to secure these operations looks something like this: if current_user.id == post.user.id.
-
-// Alternatively, the most performant way to implement this is:
-
-// post = current_user.posts.find(params[:id])
-// if post
-//   <do something>
-// else
-//   <do something else>
-// end

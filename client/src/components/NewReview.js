@@ -44,16 +44,18 @@ const NewReview = () => {
   }
 
 
-  // add an update average rating too?? on this handleNewReview
   function handleNewReview(newReview) {
+    console.log(newReview)
     const updatedProblems = boulderProblems.map((problem) => {
       if (problem.id === boulderProblem.id) {
-        return {...problem, reviews: [...problem.reviews, newReview]}
+        return {...problem, number_of_ascents: newReview.boulder_problem.number_of_ascents ,average_boulder_rating: newReview.boulder_problem.average_boulder_rating, reviews: [...problem.reviews, newReview]}
       }
       return problem
     })
     setBoulderProblems(updatedProblems);
   }
+
+
 
 
   const boulderProblem = boulderProblems?.find(prob => prob.id === parseInt(id))

@@ -35,3 +35,8 @@ function App() {
 }
 
 export default App;
+
+
+//build a user profile page that shows all of current users completed climbs or current projects??
+// dont show duplicates 
+//state managment implications fo rhaving a review  add or remove to boudler problem 
