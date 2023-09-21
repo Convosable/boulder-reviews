@@ -95,14 +95,12 @@ const NewBoulderProblem = () => {
             <input 
                 type='submit'
             /> <br></br>
-            {/* {errors.length > 0 ? errors.join('. ') : null} */}
             {errors.length > 0 ? (
                 <div>
                     {errors.map((error) => (
-                        <span key={error}>
+                        <li key={error}>
                             {error}
-                            <br />
-                        </span>
+                        </li>
                     ))}
                 </div>
             ) : null}

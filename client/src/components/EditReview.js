@@ -44,7 +44,6 @@ const EditReview = ({ rev, boulderProblem, handleReviewEdit }) => {
         <label>Complete:</label>
         <input 
           type = "checkbox"
-          // nneed to adjust this so its auto checked when form is filled
           name='isComplete'
           checked={isComplete}
           onChange = {(e) => setIsComplete(!isComplete)}   
@@ -70,7 +69,15 @@ const EditReview = ({ rev, boulderProblem, handleReviewEdit }) => {
         /> <br></br>
         <input type = "submit" value="Create Session!" />
       </form>
-      {errors}
+      {errors.length > 0 ? (
+                <div>
+                    {errors.map((error) => (
+                        <li key={error}>
+                            {error}
+                        </li>
+                    ))}
+                </div>
+            ) : null}
     </div>
   )
 }

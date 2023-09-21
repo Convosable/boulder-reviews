@@ -15,7 +15,6 @@ const BoulderProblems = () => {
     })
 
     const filterProblems = filterBySearch.filter(problem => {
-        console.log(problem)
         if (grade === "All") {
             return problem
         } else {

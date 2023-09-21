@@ -5,7 +5,7 @@ const LoginForm = () => {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [error, setError] = useState("")
+    const [errors, setErrors] = useState("")
 
     const {setUser} = useContext(UserContext)
 
@@ -22,7 +22,7 @@ const LoginForm = () => {
             if (r.ok) {
                 r.json().then((user) => setUser(user));
             } else {
-                r.json().then((error) => setError(error.errors))
+                r.json().then((errors) => setErrors(errors.errors))
             }
         })  
     }
@@ -47,7 +47,15 @@ const LoginForm = () => {
             /> <br></br>
             <input type="submit" value="Log In"/>
         </form>
-        <h3>{error}</h3>
+        {errors.length > 0 ? (
+                <div>
+                    {errors.map((error) => (
+                        <li key={error}>
+                            {error}
+                        </li>
+                    ))}
+                </div>
+            ) : null}
     </div>
   )
 }

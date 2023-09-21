@@ -9,7 +9,7 @@ const NewReview = () => {
   const [isComplete, setIsComplete] = useState(false);
   const [boulderRating, setBoulderRating] = useState(0);
   const [notes, setNotes] = useState("");
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState("");
 
   const {user} = useContext(UserContext);
   const {boulderProblems, setBoulderProblems} = useContext(BoulderProblemContext);
@@ -38,7 +38,7 @@ const NewReview = () => {
         r.json().then((review) => handleNewReview(review));
         navigate(`/boulder_problems/${id}`)
       } else {
-        r.json().then((error) => setError(error.errors));
+        r.json().then((errors) => setErrors(errors.errors));
       }
     })
   }
@@ -89,7 +89,15 @@ const NewReview = () => {
         /> <br></br>
         <input type = "submit" value="Create Session!" />
       </form>
-      <h1>{error}</h1>
+      {errors.length > 0 ? (
+                <div>
+                    {errors.map((error) => (
+                        <li key={error}>
+                            {error}
+                        </li>
+                    ))}
+                </div>
+            ) : null}
     </div>
   )
 }
