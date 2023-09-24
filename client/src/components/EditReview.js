@@ -10,7 +10,7 @@ const EditReview = ({ rev, boulderProblem, handleReviewEdit }) => {
 
     function editReview(e) {
         e.preventDefault();
-        fetch(`/reviews/${rev.id}`, {
+        fetch(`/boulder_problems/${boulderProblem.id}/reviews/${rev.id}`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json"

@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
-  resources :reviews
-  resources :boulder_problems
+  # resources :reviews
+  resources :boulder_problems do
+    resources :reviews
+  end 
   # resources :users
   post "/signup", to: "users#create"
   get "/me", to: "users#show"

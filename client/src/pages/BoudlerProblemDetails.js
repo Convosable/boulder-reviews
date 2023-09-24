@@ -20,7 +20,7 @@ const BoudlerProblemDetails = () => {
 
     
     function deleteReview(rev) {
-        fetch(`/reviews/${rev.id}`, {
+        fetch(`/boulder_problems/${id}/reviews/${rev.id}`, {
             method: 'DELETE',
         })
         .then(() => handleReviewDelete(rev));

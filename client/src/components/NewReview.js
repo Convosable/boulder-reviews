@@ -19,7 +19,7 @@ const NewReview = () => {
 
   function createReview(e) {
     e.preventDefault()
-    fetch('/reviews', {
+    fetch(`/boulder_problems/${id}/reviews`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
@@ -29,20 +29,20 @@ const NewReview = () => {
         completed: isComplete,
         boulder_rating: parseInt(boulderRating),
         notes: notes,
-        boulder_problem_id: id,
         user_id: user.id
       })
     })
     .then((r) => {
       if (r.ok) {
-        r.json().then((review) => handleNewReview(review));
+        r.json().then((review) => {
+          console.log(review);
+          handleNewReview(review)});
         navigate(`/boulder_problems/${id}`)
       } else {
         r.json().then((errors) => setErrors(errors.errors));
       }
     })
   }
-
 
   function handleNewReview(newReview) {
     const updatedProblems = boulderProblems.map((problem) => {
@@ -58,8 +58,8 @@ const NewReview = () => {
 
   return (
     <div className='new-climbing-session-form'>
-      <h1>New Review: {boulderProblem.name}</h1>
-
+      {boulderProblem ?  <h1>New Review: {boulderProblem.name} - V{boulderProblem.grade}</h1> : null}
+     
       <form onSubmit={createReview}>
         <label>Date:</label>
         <input 

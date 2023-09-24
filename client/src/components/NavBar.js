@@ -4,7 +4,7 @@ import { UserContext } from '../context/UserContext'
 
 const NavBar = () => {
 
-    const {setUser} = useContext(UserContext)
+    const {user, setUser} = useContext(UserContext)
 
     function handleLogout() {
         fetch('/logout', {
@@ -21,6 +21,7 @@ const NavBar = () => {
         <div className = "navbar">
                 <NavLink to = "/" exact = "true" className="navbar-link">Home</NavLink>
                 <NavLink to = "/boulder_problems/new" exact = "true" className="navbar-link">New Boulder Problem</NavLink>
+                <NavLink to = {`/${user.username}`} exact = "true" className="navbar-link">Profile</NavLink>
                 <button onClick = {handleLogout} className="logout-button">Logout</button>
         </div>
     )
