@@ -7,8 +7,16 @@ class Review < ApplicationRecord
     validates :boulder_rating, presence: true, numericality: { in: 0..4 }
     validates :completed, presence: true, if: :completed?
 
+    validate :no_future_date
+
     def completed?
         completed == true
+    end
+
+    def no_future_date
+        if date > Date.today
+            errors.add(:date, "can't be in the future.")
+        end
     end
 
     def username

@@ -9,6 +9,7 @@ import BoulderProblems from "../pages/BoulderProblems";
 import NewReview from './NewReview';
 import BoudlerProblemDetails from '../pages/BoudlerProblemDetails';
 import NewBoulderProblem from '../pages/NewBoulderProblem';
+import Profile from '../pages/Profile';
 
 // need to update the readMe
 
@@ -22,12 +23,12 @@ function App() {
     <div className="App">
         <BoulderProblemProvider>
           <NavBar />
-            <h1>Welcome, {user.name}!</h1>
             <Routes>
               <Route path="/" element={<BoulderProblems />} />
               <Route path="/boulder_problems/:id/reviews/new" element={<NewReview />} />
               <Route path="/boulder_problems/:id" element={<BoudlerProblemDetails />} />
               <Route path="/boulder_problems/new" element={<NewBoulderProblem />} />
+              <Route path={`/${user.username}`} element={<Profile />} />
             </Routes>
         </BoulderProblemProvider>
     </div>

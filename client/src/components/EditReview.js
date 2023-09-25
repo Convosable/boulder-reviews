@@ -67,7 +67,7 @@ const EditReview = ({ rev, boulderProblem, handleReviewEdit }) => {
           name='notes'
           onChange = {(e) => setNotes(e.target.value)}  
         /> <br></br>
-        <input type = "submit" value="Create Session!" />
+        <input type = "submit" value="Update!" />
       </form>
       {errors.length > 0 ? (
                 <div>

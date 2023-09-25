@@ -114,3 +114,15 @@ body {
 .boulder-problem-details img {
   width: 95%;
 }
+
+.user-boulder-problems {
+  display: flex;
+  justify-content: space-between;
+}
+
+.projects-section,
+.completed-section {
+  flex-basis: 50%;
+  border: 1px solid #000;
+  padding: 10px;
+}

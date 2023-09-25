@@ -21,7 +21,7 @@ const NavBar = () => {
         <div className = "navbar">
                 <NavLink to = "/" exact = "true" className="navbar-link">Home</NavLink>
                 <NavLink to = "/boulder_problems/new" exact = "true" className="navbar-link">New Boulder Problem</NavLink>
-                <NavLink to = {`/${user.username}`} exact = "true" className="navbar-link">Profile</NavLink>
+                <NavLink to = {`/${user.username}`} exact = "true" className="navbar-link">MyProfile: {user.username}</NavLink>
                 <button onClick = {handleLogout} className="logout-button">Logout</button>
         </div>
     )
