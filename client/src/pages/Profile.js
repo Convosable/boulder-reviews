@@ -34,7 +34,6 @@ const Profile = () => {
     })
 
     console.log("completed", completedProblems)
-    // add a button that switchs between projects and completed problems 
 
 
   return (

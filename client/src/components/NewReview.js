@@ -9,7 +9,7 @@ const NewReview = () => {
   const [isComplete, setIsComplete] = useState(false);
   const [boulderRating, setBoulderRating] = useState(0);
   const [notes, setNotes] = useState("");
-  const [errors, setErrors] = useState("");
+  const [errors, setErrors] = useState([]);
 
   const {user} = useContext(UserContext);
   const {boulderProblems, setBoulderProblems} = useContext(BoulderProblemContext);
@@ -55,6 +55,8 @@ const NewReview = () => {
   }
 
   const boulderProblem = boulderProblems?.find(prob => prob.id === parseInt(id))
+
+  console.log(errors)
 
   return (
     <div className='new-climbing-session-form'>

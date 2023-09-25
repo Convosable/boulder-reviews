@@ -10,7 +10,6 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        #need to do user.reviews.create?? instad od boudlerProblem
         problem = BoulderProblem.find(params[:boulder_problem_id])
         review = problem.reviews.create!(review_params)
         render json: review, status: :created
@@ -36,8 +35,6 @@ class ReviewsController < ApplicationController
 
     def review_params
         params.permit(:date, :completed, :boulder_rating, :notes, :user_id)
-
-        #take out userID
     end
 
 end
