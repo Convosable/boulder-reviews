@@ -29,7 +29,7 @@ const LoginForm = () => {
 
   return (
     <div onSubmit = {handleSubmit}>
-        <h1>LoginForm</h1>
+        <h1>Login:</h1>
         <form>
             <label>Username: </label>
             <input 

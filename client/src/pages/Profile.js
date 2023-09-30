@@ -8,9 +8,6 @@ const Profile = () => {
     const {user} = useContext(UserContext);
     const {boulderProblems} = useContext(BoulderProblemContext);
 
-    // const cmToFeet = (user.height * 0.0328084)
-    // const userHeight = cmToFeet.toFixed(2)
-
     const projects = boulderProblems.filter((problem) => {
         if (problem.reviews && problem.reviews.length > 0) {
             const userReview = problem.reviews.find((review) => review.username === user.username)
@@ -18,10 +15,8 @@ const Profile = () => {
                 return userReview.completed === false;
             }
         }
-        return false // or message "No projects found" in a ternary to render below
+        return false
     })
-
-    console.log("proj",projects)
 
     const completedProblems = boulderProblems.filter((problem) => {
         if (problem.reviews && problem.reviews.length > 0) {
@@ -33,12 +28,9 @@ const Profile = () => {
         return false
     })
 
-    console.log("completed", completedProblems)
-
-
   return (
     <div>
-        <h1>{user.name} // @{user.username}</h1>
+        <h1>{user.name} / / @{user.username}</h1>
         <img src={user.image_url} alt={user.username} />
         <h3>Height: {user.height} cm</h3>
         <h3>Weight: {user.weight} lbs</h3>

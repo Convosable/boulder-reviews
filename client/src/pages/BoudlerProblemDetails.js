@@ -18,8 +18,6 @@ const BoudlerProblemDetails = () => {
 
     const { name, grade, location, description, image_url, reviews, average_boulder_rating, number_of_ascents} = boulderProblem
 
-    console.log(boulderProblem)
-
     
     function deleteReview(rev) {
         fetch(`/boulder_problems/${id}/reviews/${rev.id}`, {
@@ -77,7 +75,7 @@ const BoudlerProblemDetails = () => {
             <h2>Reviews:</h2>
             {boulderProblem.reviews.map((rev) =>
             <div className='review-card' key = {rev.id}>
-                <p>{rev.username}</p>
+                <p>@{rev.username}</p>
                 <p>{rev.date}</p>
                 Completed: {rev.completed ? '✅' : '❌'}
                 <p>Rating: {rev.boulder_rating} ⭐ </p>

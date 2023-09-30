@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
-import { UserContext } from '../context/UserContext';
 import { BoulderProblemContext } from '../context/BoulderProblemContext';
 
 const NewReview = () => {
@@ -11,7 +10,6 @@ const NewReview = () => {
   const [notes, setNotes] = useState("");
   const [errors, setErrors] = useState([]);
 
-  const {user} = useContext(UserContext);
   const {boulderProblems, setBoulderProblems} = useContext(BoulderProblemContext);
 
   const {id} = useParams()
@@ -29,7 +27,7 @@ const NewReview = () => {
         completed: isComplete,
         boulder_rating: parseInt(boulderRating),
         notes: notes,
-        user_id: user.id
+        boulder_problem_id: id
       })
     })
     .then((r) => {
@@ -55,8 +53,6 @@ const NewReview = () => {
   }
 
   const boulderProblem = boulderProblems?.find(prob => prob.id === parseInt(id))
-
-  console.log(errors)
 
   return (
     <div className='new-climbing-session-form'>
@@ -89,7 +85,7 @@ const NewReview = () => {
           value = {notes} 
           onChange = {(e) => setNotes(e.target.value)}  
         /> <br></br>
-        <input type = "submit" value="Create Session!" />
+        <input type = "submit" value="Create Review!" />
       </form>
       {errors.length > 0 ? (
                 <div>

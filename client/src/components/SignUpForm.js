@@ -46,9 +46,9 @@ const SignUpForm = () => {
 
     return (
         <div>
-            <h1>Signup Form</h1>
+            <h1>Signup:</h1>
             <form onSubmit = {handleSignup}>
-                <label>Username:</label>
+                <label>Username: </label>
                 <input 
                     type = "text" 
                     name = "username" 
@@ -56,7 +56,7 @@ const SignUpForm = () => {
                     onChange = {(e) => setUsername(e.target.value)} 
                 /> <br></br>
 
-                <label>Password:</label>
+                <label>Password: </label>
                 <input 
                     type = "password"
                     name = "password"
@@ -64,7 +64,7 @@ const SignUpForm = () => {
                     onChange = {(e) => setPassword(e.target.value)} 
                 /> <br></br>
 
-                <label>Password Confirmation:</label>
+                <label>Password Confirmation: </label>
                 <input 
                     type = "password"
                     name = "passwordConfirmation"
@@ -72,7 +72,7 @@ const SignUpForm = () => {
                     onChange = {(e) => setPasswordConfirmation(e.target.value)} 
                 /> <br></br>
 
-                <label>Name:</label>
+                <label>Name: </label>
                 <input 
                     type = "text"
                     name = "name"
@@ -80,7 +80,7 @@ const SignUpForm = () => {
                     onChange = {(e) => setName(e.target.value)} 
                 /> <br></br>
 
-                <label>Profile Picture:</label>
+                <label>Profile Picture: </label>
                 <input 
                     type = "text"
                     name = "imageUrl"
@@ -88,7 +88,7 @@ const SignUpForm = () => {
                     onChange = {(e) => setImageUrl(e.target.value)} 
                 /> <br></br>
 
-                <label>Height:</label>
+                <label>Height: </label>
                 <input 
                     type = "text"
                     name = "height"
@@ -97,7 +97,7 @@ const SignUpForm = () => {
                 />
                 <label>cm</label> <br></br>
 
-                <label>Weight:</label>
+                <label>Weight: </label>
                 <input 
                     type = "text"
                     name = "weight"
@@ -106,14 +106,14 @@ const SignUpForm = () => {
                 />
                 <label>lbs.</label> <br></br>
 
-                <label>Experience:</label>
-                <input 
-                    type = "text"
-                    name = "experience"
-                    value = {experience}
-                    onChange = {(e) => setExperience(e.target.value)} 
-                /> <br></br>
-
+                <label>Experience: </label>
+                <select value = {experience} onChange = {(e) => setExperience(e.target.value)}>
+                    <option value="">Select Experience</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                    <option value="Elite">Elite</option>
+                </select> <br></br>
                 <input type="submit" value="Sign Up" />
             </form>
             {errors.length > 0 ? (

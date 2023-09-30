@@ -15,7 +15,7 @@ class BoulderProblem < ApplicationRecord
     end
 
     def number_of_ascents
-        ascent = self.reviews.where(completed: true).distinct.count('user_id')
+        ascent = self.reviews.where(completed: true).count('user_id')
     end
 
 end

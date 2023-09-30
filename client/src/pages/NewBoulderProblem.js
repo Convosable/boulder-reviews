@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 const NewBoulderProblem = () => {
 
-    // if user == admin, then allow edit to boulder
-
     const [name, setName] = useState("");
     const [grade, setGrade] = useState(0);
     const [description, setDescription] = useState("");
@@ -47,8 +45,6 @@ const NewBoulderProblem = () => {
     function createBoulderProblem(problem) {
         setBoulderProblems([...boulderProblems, problem])
     }
-
-    //add a delete boulder button
 
   return (
     <div className='new-boulder-input'>
