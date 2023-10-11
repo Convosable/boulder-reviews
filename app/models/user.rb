@@ -11,4 +11,12 @@ class User < ApplicationRecord
     validates :height, presence: true
     validates :weight, presence: true
     validates :experience, presence: true
+
+    def climb_complete
+        self.reviews.where(completed: true)
+    end
+
+    def climb_incomplete
+        self.reviews.where(completed: false)
+    end
 end

@@ -1,14 +1,5 @@
 class ReviewsController < ApplicationController
 
-    def index
-        render json: Review.all
-    end
-
-    def show
-        review = find_review
-        render json: review, status: :ok
-    end
-
     def create
         review = @current_user.reviews.create!(review_params)
         render json: review, status: :created
@@ -27,10 +18,6 @@ class ReviewsController < ApplicationController
     end
 
     private
-
-    def find_review
-        Review.find(params[:id])
-    end
 
     def review_params
         params.permit(:date, :completed, :boulder_rating, :notes, :boulder_problem_id)

@@ -8,24 +8,14 @@ const Profile = () => {
     const {user} = useContext(UserContext);
     const {boulderProblems} = useContext(BoulderProblemContext);
 
-    const projects = boulderProblems.filter((problem) => {
-        if (problem.reviews && problem.reviews.length > 0) {
-            const userReview = problem.reviews.find((review) => review.username === user.username)
-            if (userReview) {
-                return userReview.completed === false;
-            }
-        }
-        return false
+    const completedClimbs = boulderProblems.filter(problem => {
+        const userClimbs = user.climb_complete.map(climb => climb.boulder_problem_id)
+        return userClimbs.includes(problem.id)
     })
 
-    const completedProblems = boulderProblems.filter((problem) => {
-        if (problem.reviews && problem.reviews.length > 0) {
-            const userReview = problem.reviews.find((review) => review.username === user.username)
-            if (userReview) {
-                return userReview.completed === true;
-            }
-        }
-        return false
+    const incompletedClimbs = boulderProblems.filter(problem => {
+        const userClimbs = user.climb_incomplete.map(climb => climb.boulder_problem_id)
+        return userClimbs.includes(problem.id)
     })
 
   return (
@@ -38,7 +28,7 @@ const Profile = () => {
         <div className='user-boulder-problems'>
             <div className='projects-section'>
                 <h3>Projects:</h3>
-                {projects.map((problem) =>
+                {incompletedClimbs.map((problem) =>
                     <div key={problem.id}>
                         <Link to={`/boulder_problems/${problem.id}`}>
                             <h1>{problem.name} - V{problem.grade}</h1>
@@ -48,7 +38,7 @@ const Profile = () => {
             </div>
             <div className='completed-section'>
                 <h3>Completed:</h3>
-                {completedProblems.map((problem) =>
+                {completedClimbs.map((problem) =>
                     <div key={problem.id}>
                         <Link to={`/boulder_problems/${problem.id}`}>
                             <h1>{problem.name} - V{problem.grade}</h1>
