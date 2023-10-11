@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+
+  get "/many_reviews/:number", to: "boulder_problems#many_reviews"
   
   resources :boulder_problems do
     resources :reviews
   end 
+
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
   post "/login", to: "sessions#create"

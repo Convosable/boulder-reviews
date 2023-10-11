@@ -1,7 +1,7 @@
 class BoulderProblemsController < ApplicationController
 
     def index
-        render json: BoulderProblem.all 
+        render json: BoulderProblem.all.order(:name) 
     end
 
     def show
@@ -14,17 +14,19 @@ class BoulderProblemsController < ApplicationController
         render json: boulder_problem, status: :created
     end
 
-    def update
-        boulder_problem = find_boulder_problem
-        boulder_problem.update!(boulder_problem_params)
-        render json: boulder_problem, status: :accepted
-    end
+    # not used in app, was using it for postman 
 
-    def destroy
-        boulder_problem = find_boulder_problem
-        boulder_problem.delete
-        head :no_content
-    end
+    # def update
+    #     boulder_problem = find_boulder_problem
+    #     boulder_problem.update!(boulder_problem_params)
+    #     render json: boulder_problem, status: :accepted
+    # end
+
+    # def destroy
+    #     boulder_problem = find_boulder_problem
+    #     boulder_problem.delete
+    #     head :no_content
+    # end
 
     private
 

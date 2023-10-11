@@ -11,8 +11,6 @@ import BoudlerProblemDetails from '../pages/BoudlerProblemDetails';
 import NewBoulderProblem from '../pages/NewBoulderProblem';
 import Profile from '../pages/Profile';
 
-// need to update the readMe
-
 function App() {
 
   const {user} = useContext(UserContext)
